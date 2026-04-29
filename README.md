@@ -1,10 +1,6 @@
-<p align="center" style="font-size: 34px; font-weight: 900; margin: 0;">
-CardioBot - AI 心血管健康管理助手
-</p>
+# CardioBot - AI 心血管健康管理助手
 
-<p align="center" style="font-size: 20px; font-weight: 600; margin: 8px 0 16px 0; color:#444;">
 基于 Gradio和大语言模型的多模态心血管健康评估与主动干预系统
-</p>
 
 ---
 
