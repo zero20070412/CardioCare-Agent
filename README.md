@@ -1,6 +1,8 @@
-# CardioBot - AI 心血管健康管理助手
+<p align="center" style="font-size: 28px; font-weight: bold; margin: 0;">
+CardioBot - AI 心血管健康管理助手
+</p>
 
-<p align="center">
+<p align="center" style="font-size: 18px; margin-top: 8px; font-weight: normal;">
   <strong>基于 Gradio和大语言模型的多模态心血管健康评估与主动干预系统</strong>
 </p>
 
@@ -10,7 +12,7 @@
 
 CardioBot 是一款面向个人用户的心血管健康管理 AI 助手，集成多模态信号分析、语音情感识别和智能对话能力，帮助用户进行日常心血管健康监测与风险评估。
 
-### 核心能力
+## 核心能力
 
 | 模块                 | 功能                                                         | 状态 |
 | -------------------- | ------------------------------------------------------------ | ---- |
@@ -94,19 +96,11 @@ cardiobot-main/
 
 ### 1. 环境准备
 
-# 搭建虚拟环境
+安装依赖
 
-# 安装依赖
-
+```
 pip install -r requirements.txt
-
-````
-
-### 2. 配置环境变量
-
-```bash
-cp .env.example .env
-````
+```
 
 编辑 `.env` 文件，填入你的 API 配置：
 
@@ -123,7 +117,7 @@ MODEL_NAME=qwen3.6-flash
 VISION_MODEL_NAME=qwen-vl-max
 ```
 
-### 3. 启动
+### 2. 启动
 
 ```bash
 python app.py
