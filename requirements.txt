@@ -1,0 +1,30 @@
+# 基础框架
+gradio>=5.0.0
+python-dotenv
+
+# 模型调用与后端
+openai>=1.0.0
+uuid
+
+# 算法与数据处理 (根据你 algorithms 文件夹中的需求)
+numpy
+pandas
+scipy
+
+# 图像处理 (如果你需要处理体检单图片)
+pillow
+
+# PDF 解析 (体检报告 OCR)
+PyMuPDF>=1.24.0
+
+# 如果你在 core.py 或 model.py 中使用了以下库
+requests
+
+# 语音情感识别 - emotion2vec
+torch>=2.0.0
+torchaudio>=2.0.0
+soundfile
+funasr>=1.1.0
+modelscope
+torchaudio
+torchcodec
