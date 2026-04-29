@@ -1,9 +1,9 @@
-<p align="center" style="font-size: 28px; font-weight: bold; margin: 0;">
+<p align="center" style="font-size: 34px; font-weight: 900; margin: 0;">
 CardioBot - AI 心血管健康管理助手
 </p>
 
-<p align="center" style="font-size: 18px; margin-top: 8px; font-weight: normal;">
-  <strong>基于 Gradio和大语言模型的多模态心血管健康评估与主动干预系统</strong>
+<p align="center" style="font-size: 20px; font-weight: 600; margin: 8px 0 16px 0; color:#444;">
+基于 Gradio和大语言模型的多模态心血管健康评估与主动干预系统
 </p>
 
 ---
@@ -125,7 +125,7 @@ python app.py
 
 浏览器访问 `http://localhost:7860` 即可使用。
 
-### Mock 模式
+## Mock 模式
 
 不配置 API Key 时系统自动进入 Mock 模式，所有 LLM 回复为模拟文本，适合前端开发和功能测试。
 
