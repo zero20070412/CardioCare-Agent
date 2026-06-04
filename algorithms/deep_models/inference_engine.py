@@ -368,7 +368,8 @@ class DiagnosticInferenceEngine:
             loc_tensor = loc_tensor.to(self._device)
 
             with torch.no_grad():
-                features = self._pcg_model.backbone.feature_extraction(waveform_tensor, loc_tensor)
+                # LSTransPCG.feature_extraction(x, loc) 接受信号+位置两个参数
+                features = self._pcg_model.feature_extraction(waveform_tensor, loc_tensor)
                 logits = self._pcg_model(waveform_tensor, loc_tensor)
                 probs = torch.sigmoid(logits).cpu().numpy()[0]
 
@@ -538,8 +539,29 @@ _engine_instance: DiagnosticInferenceEngine | None = None
 
 
 def get_inference_engine() -> DiagnosticInferenceEngine:
-    """获取全局推理引擎单例"""
+    """
+    获取全局推理引擎单例。
+    首次创建时自动从配置加载 ECG 和 PCG 预训练权重，
+    加载失败时 graceful fallback 到 demo 模式。
+    """
     global _engine_instance
     if _engine_instance is None:
         _engine_instance = DiagnosticInferenceEngine()
+
+        # 自动加载权重（仅在首次创建时）
+        from utils.config import settings
+
+        ecg_path = settings.ecg_checkpoint
+        pcg_path = settings.pcg_checkpoint
+
+        if ecg_path and os.path.isfile(ecg_path):
+            _engine_instance.load_ecg_model(checkpoint_path=ecg_path, model_config="student")
+        else:
+            logger.debug(f"ECG 权重文件不存在 ({ecg_path})，使用 demo 模式")
+
+        if pcg_path and os.path.isfile(pcg_path):
+            _engine_instance.load_pcg_model(checkpoint_path=pcg_path, model_config="student")
+        else:
+            logger.debug(f"PCG 权重文件不存在 ({pcg_path})，使用 demo 模式")
+
     return _engine_instance

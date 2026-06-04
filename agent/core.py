@@ -128,10 +128,17 @@ def _format_deep_analysis_for_llm(module: str, detail: dict) -> list[str]:
         status = detail.get("status", "unknown")
 
         if "deep_analysis" in detail:
-            # 有深度分析结果（真实推理或演示模式）
+            # 有深度分析结果（真实推理或仿真推理）
             da = detail["deep_analysis"]
             feat = da.get("features_summary", {})
             top = da.get("top_classes", [])
+
+            # 标注数据来源
+            meta = detail.get("meta", {})
+            if meta.get("synthetic"):
+                lines.append("  数据来源: 系统生成的标准仿真心电/心音信号（模型已执行完整推理）")
+            elif meta.get("input_provided"):
+                lines.append("  数据来源: 用户上传的真实信号文件")
 
             # 特征信息
             if feat:
@@ -169,6 +176,13 @@ def _format_deep_analysis_for_llm(module: str, detail: dict) -> list[str]:
             feat = da.get("features_summary", {})
             pred = da.get("predictions", {})
             risk = detail.get("risk_assessment", {})
+
+            # 标注数据来源
+            meta = detail.get("meta", {})
+            if meta.get("synthetic"):
+                lines.append("  数据来源: 系统生成的标准仿真心电/心音信号（模型已执行完整推理）")
+            elif meta.get("input_provided"):
+                lines.append("  数据来源: 用户上传的真实信号文件")
 
             if feat:
                 if isinstance(feat.get('norm'), (int, float)):

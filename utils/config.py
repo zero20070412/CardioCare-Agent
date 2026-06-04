@@ -44,5 +44,15 @@ class Settings:
 
     max_history_rounds: int = _get_int("MAX_HISTORY_ROUNDS", 6)
 
+    # 模型权重路径（默认使用 weights/ 目录下的预训练权重）
+    ecg_checkpoint: str = os.getenv(
+        "ECG_CHECKPOINT",
+        str(PROJECT_ROOT / "weights" / "CODE15_Pretrain_student_checkpoint.pt"),
+    )
+    pcg_checkpoint: str = os.getenv(
+        "PCG_CHECKPOINT",
+        str(PROJECT_ROOT / "weights" / "CirCorDigiScopePCG_LSTrans_student_checkpoint.pt"),
+    )
+
 
 settings = Settings()

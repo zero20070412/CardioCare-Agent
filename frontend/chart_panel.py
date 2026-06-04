@@ -1,7 +1,7 @@
 import gradio as gr
 
 def create_chart_panel():
-    with gr.Row():
+    with gr.Row(visible=False):
         with gr.Column(variant="panel", scale=1):
             gr.Markdown("### HRV 活力状态")
             hrv_slider = gr.Slider(0, 100, value=0, label="HRV 指标", interactive=False)
